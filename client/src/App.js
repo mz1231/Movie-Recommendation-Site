@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Form from './components/Form'
 import './css/App.css';
 
 class App extends Component {
@@ -21,6 +22,7 @@ class App extends Component {
     return (
       <div className="App">
         <p>das</p>
+        <Form/>
       </div>
     );
     }
