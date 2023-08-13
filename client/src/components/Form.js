@@ -6,11 +6,23 @@ const Form = () => {
 
         const form = e.target;
         const formData = new FormData(form);
+        
+        
+        const selectedServices = [];
+        for (const key of formData.keys()) {
+            selectedServices.push(key);
+        }
 
         //making request to server
-        fetch("http://localhost:9000/testAPI", { method: form.method, body: formData })
-          .then(res => res.text())
-          .then(res => console.log({ apiResponse: res }));
+        fetch("http://localhost:9000/testAPI", {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ data: selectedServices }) 
+        })
+        .then(res => res.text())
+        .then(res => console.log({ apiResponse: res }));
 
     };
 
@@ -19,13 +31,13 @@ const Form = () => {
             <form method="post" onSubmit={handleSubmit}>
                 <p>Select Streaming Service:</p>
                 <label>
-                    Netflix: <input type="checkbox" name="netflix" />
+                    Netflix: <input type="checkbox" name="Netflix"/>
                 </label>
                 <label>
-                    Hulu: <input type="checkbox" name="Hulu" />
+                    Hulu: <input type="checkbox" name="Hulu"/>
                 </label>
                 <label>
-                    AppleTV: <input type="checkbox" name="AppleTV" />
+                    AppleTV: <input type="checkbox" name="AppleTV"/>
                 </label>
                 <button type="submit">Submit form</button>
             </form>
